@@ -1,5 +1,7 @@
 "use client";
 import ExploreBtn from "@/components/ExploreBtn";
+import EventCard from "@/components/EventCard";
+import { events } from "@/lib/constants"
 
 
 const Home = () => {
@@ -10,11 +12,15 @@ const Home = () => {
       
       <ExploreBtn />
 
-      <div className="mt-20 space-y-7">
-        <ul>
+      <div className="mt-20 space-y-7 ">
+        <ul className="w-full grid grid-cols-3 gap-8">
           {
-            [1,2,3,4,5,6,7].map((item, index) => (
-              <li key={index}>{item}</li>
+            events.map((event) => (
+              <li key={event.title}>
+                <EventCard 
+                  {...event}
+                /> 
+              </li>
             ))
           }
         </ul>
