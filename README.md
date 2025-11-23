@@ -1,36 +1,103 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🎟️ Event Platform
 
-## Getting Started
+A modern platform to **create, manage, and showcase events** seamlessly.
 
-First, run the development server:
+## ✨ Overview
+The Event Platform simplifies everything around event publishing and visibility. Organizers can create events, upload images, track engagement, and guide attendees through a clean user experience.
 
+## 🚀 Features
+
+### 🔹 Core Functionality
+- Dynamic homepage displaying upcoming events
+- Detailed event pages (slug-based)
+- REST API routes for CRUD operations
+- Cloudinary-powered image uploads
+- Engagement + performance analytics
+- Fully responsive UI
+
+### 🔹 Event Detail Pages
+- Date, venue, host & schedule
+- High-quality featured images
+- CTA to register
+- Recommended similar events
+
+## 🧱 Tech Stack
+- **Next.js 14 – App Router**
+- **React**
+- **TailwindCSS**
+- **Prisma ORM**
+- **Mongo db**
+- **Cloudinary**
+
+## ⚙️ Installation
+
+### Requirements
+- Node.js 18+
+- npm or yarn
+
+### Clone & Install Dependencies
+
+### Clone & Run
 ```bash
+git clone https://www.github.com/Joshuakibwage/dave-event/
+cd dave-event
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Environment Variables
+```env
+NEXT_PUBLIC_BASE_URL=
+DATABASE_URL=
+CLOUDINARY_CLOUD_NAME=
+CLOUDINARY_API_KEY=
+CLOUDINARY_API_SECRET=
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Visit: `http://localhost:3000`
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## ▶️ Running the App
 
-## Learn More
+### Development Mode
+```bash
+npm run dev
+```
+Runs the Next.js 16 development server.
 
-To learn more about Next.js, take a look at the following resources:
+### Build for Production
+```bash
+npm run build
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Start Production Server
+```bash
+npm start
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+The app will run using your optimized production build.
 
-## Deploy on Vercel
+## 📁 Folder Structure
+```
+app/
+  api/
+    events/
+  events/
+  dashboard/
+components/
+lib/
+utils/
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🗺️ Roadmap
+- Ticket payments
+- Email notifications
+- Admin dashboards
+- AI event recommendations
+- Filtering + categories
+- Sponsors section
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🤝 Contributing
+Pull requests welcome.
+
+## 👤 Author
+Built with vision by **Joshua Kibwage**.
