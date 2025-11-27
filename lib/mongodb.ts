@@ -35,6 +35,16 @@ async function connectDB(): Promise<typeof mongoose> {
 
   // Return existing connection promise if one is in progress
   if (!cached.promise) {
+    // Enable mongoose debug logging in development to surface driver ops
+    if (process.env.NODE_ENV === 'development') {
+      try {
+        mongoose.set('debug', true as any);
+        // eslint-disable-next-line no-console
+        console.log('Mongoose debug enabled');
+      } catch (err) {
+        // ignore
+      }
+    }
     // Validate MongoDB URI exists
     if (!MONGODB_URI) {
       throw new Error(
@@ -43,7 +53,11 @@ async function connectDB(): Promise<typeof mongoose> {
     }
     const options = {
       bufferCommands: false, // Disable Mongoose buffering
-    };
+      // Shorten server selection timeout to fail fast when DB is unreachable
+      serverSelectionTimeoutMS: 5000,
+      // Prefer IPv4 to avoid occasional DNS/IPv6 issues in some CI/dev hosts
+      family: 4,
+    } as const;
 
     // Create a new connection promise
     cached.promise = mongoose.connect(MONGODB_URI!, options).then((mongoose) => {
@@ -57,6 +71,11 @@ async function connectDB(): Promise<typeof mongoose> {
   } catch (error) {
     // Reset promise on error to allow retry
     cached.promise = null;
+    // Provide a clearer error message in development
+    if (process.env.NODE_ENV === 'development') {
+      // eslint-disable-next-line no-console
+      console.error('MongoDB connection error:', error);
+    }
     throw error;
   }
 
