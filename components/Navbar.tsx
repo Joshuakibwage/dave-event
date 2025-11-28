@@ -20,7 +20,12 @@ const Navbar = () => {
                 <ul>
                     <Link href="/">Home</Link>
                     <Link href="/">Events</Link>
-                    <Link href="/">Create Events</Link>
+                    <Link 
+                        href="/events/create"
+                        className="border px-4 py-1 rounded-md border-neutral-700"
+                    >
+                            Create Event
+                    </Link>
                 </ul>
             </nav>
         </header>
