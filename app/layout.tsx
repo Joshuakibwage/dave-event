@@ -26,6 +26,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const currentYear = new Date().getFullYear();
   return (
     <html lang="en">
       <body
@@ -52,7 +53,7 @@ export default function RootLayout({
         <main>
           {children}
         </main>
-        <Footer />
+        <Footer year={currentYear} />
       </body>
     </html>
   );
