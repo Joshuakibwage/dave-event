@@ -3,7 +3,26 @@ import EventCard from "@/components/EventCard";
 import { IEvent } from "@/database";
 import { cacheLife } from "next/cache";
 
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+// Helper: resolve a safe absolute URL for server-side fetches. If NEXT_PUBLIC_BASE_URL
+// is provided without a protocol (or unset), normalize it and fall back to localhost.
+function resolveApiUrl(path: string) {
+    const raw = process.env.NEXT_PUBLIC_BASE_URL;
+    let base = raw && raw.length > 0 ? raw : '';
+
+    if (!base) {
+        base = `http://localhost:${process.env.PORT ?? 3000}`;
+    }
+
+    if (!/^[a-zA-Z][a-zA-Z\d+\-.]*:/.test(base)) {
+        base = `https://${base}`;
+    }
+
+    try {
+        return new URL(path, base).toString();
+    } catch {
+        return new URL(path, `http://localhost:${process.env.PORT ?? 3000}`).toString();
+    }
+}
 
 const Page = async () => {
 
@@ -11,7 +30,8 @@ const Page = async () => {
 
     cacheLife('hours')
 
-    const response = await fetch(`${BASE_URL}/api/events`, { cache: 'no-store' });
+    const apiUrl = resolveApiUrl('/api/events');
+    const response = await fetch(apiUrl, { cache: 'no-store' });
     const { events } = await response.json();
 
     return (

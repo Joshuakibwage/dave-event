@@ -178,8 +178,8 @@ function normalizeTime(timeString: string): string {
   return `${hours.toString().padStart(2, '0')}:${minutes}`;
 }
 
-// Create unique index on slug for better performance
-EventSchema.index({ slug: 1 }, { unique: true });
+// The `unique` constraint is already declared on the `slug` path above.
+// Avoid declaring the same index twice to prevent duplicate-index warnings from Mongoose.
 
 // Create compound index for common queries
 EventSchema.index({ date: 1, mode: 1 });
