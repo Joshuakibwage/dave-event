@@ -4,7 +4,7 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --color-blue: #F54927;
+  --color-blue: #27B7F5;
   --color-light-100: #e7f2ff;
   --color-light-200: #bdbdbd;
   --color-border-dark: #151024;
@@ -17,7 +17,7 @@
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  --primary: #F54927;
+  --primary: #27B7F5;
   --primary-foreground: oklch(0.985 0 0);
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);

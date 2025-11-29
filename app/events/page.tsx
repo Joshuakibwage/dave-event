@@ -10,17 +10,19 @@ async function EventsList() {
 
   return (
     <>
-      {events && events.length > 0 ? (
-        <ul className="events space-y-6">
-          {events.map((event: IEvent) => (
-            <li key={event.slug} className="list-none">
-              <EventCard {...event} />
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <p className="text-center text-gray-500">No events found. Create one to get started!</p>
-      )}
+        {
+            events && events.length > 0 ? (
+                <ul className="events space-y-6">
+                {events.map((event: IEvent) => (
+                    <li key={event.slug} className="list-none">
+                    <EventCard {...event} />
+                    </li>
+                ))}
+                </ul>
+            ) : (
+                <p className="text-center text-gray-500">No events found. Create one to get started!</p>
+            )
+        }
     </>
   );
 }
