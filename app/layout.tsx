@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { headers } from 'next/headers';
 import { Schibsted_Grotesk, Martian_Mono } from "next/font/google";
 import "./globals.css";
 import LightRays from "@/components/LightRays";
@@ -26,7 +27,11 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // Read request-specific headers first so using non-deterministic values like Date()
+  // won't trigger Next.js prerender warnings.
+  headers();
   const currentYear = new Date().getFullYear();
+
   return (
     <html lang="en">
       <body
