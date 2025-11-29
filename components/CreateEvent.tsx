@@ -58,6 +58,25 @@ const CreateEvent = () => {
     setImageFile(e.target.files?.[0] ?? null);
   };
 
+  const resetForm = () => {
+    setState({
+      title: "",
+      description: "",
+      overview: "",
+      venue: "",
+      location: "",
+      date: "",
+      time: "",
+      mode: "hybrid",
+      audience: "",
+      organizer: "",
+      tagsText: "",
+      agendaText: "",
+    });
+    setImageFile(null);
+    setError(null);
+    setSuccess(null);
+  };
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
@@ -96,8 +115,9 @@ const CreateEvent = () => {
 
       if (!res.ok) throw new Error(json?.error || json?.message || "Request failed");
 
-      // show success then navigate to events list
+      // show success then reset form and navigate to events list
       setSuccess(json?.message || "Event created successfully");
+      resetForm();
       setTimeout(() => {
         router.push('/events');
       }, 1200);
@@ -237,7 +257,7 @@ const CreateEvent = () => {
           <button 
             type="submit" 
             disabled={loading} 
-            className="px-4 py-2 bg-blue text-black cursor-pointer rounded"
+            className="px-4 py-2 bg-blue text-white font-semibold cursor-pointer rounded"
           >
           {loading ? "Creating..." : "Create Event"}
         </button>
